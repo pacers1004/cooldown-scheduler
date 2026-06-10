@@ -1,0 +1,16 @@
+{
+  "name": "cooldown-scheduler",
+  "version": "1.0.0",
+  "description": "Pacers 쿨다운 자동 게시글 스케줄러",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "TEST_MODE=true node index.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.52.0",
+    "axios": "^1.7.0",
+    "dotenv": "^16.4.0",
+    "node-cron": "^3.0.3"
+  }
+}
