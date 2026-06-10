@@ -1,0 +1,27 @@
+name: Cooldown Auto Post
+
+on:
+  schedule:
+    - cron: '0 21 * * *'   # 06:00 KST
+    - cron: '17 22 * * *'  # 07:17 KST
+    - cron: '43 0 * * *'   # 09:43 KST
+    - cron: '8 2 * * *'    # 11:08 KST
+    - cron: '51 3 * * *'   # 12:51 KST
+    - cron: '29 5 * * *'   # 14:29 KST
+    - cron: '14 7 * * *'   # 16:14 KST
+    - cron: '37 9 * * *'   # 18:37 KST
+    - cron: '22 11 * * *'  # 20:22 KST
+    - cron: '55 12 * * *'  # 21:55 KST
+  workflow_dispatch:
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Bubble create_cooldown_post
+        run: |
+          curl -s -X POST "${{ secrets.BUBBLE_API_URL }}" \
+            -H "Authorization: Bearer ${{ secrets.BUBBLE_API_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{}'
+          echo "게시 완료 $(date '+%Y-%m-%d %H:%M KST')"
