@@ -61,9 +61,9 @@ curl -s -X PUT "https://api.cron-job.org/jobs" \
 - **Token**: `36aa51d61c70995e64e40de1f78a3fa6`
 - **Method**: POST, body `{}` 비워도 됨
 
-## GitHub Actions (현재 비활성 상태)
-- `cooldown.yml` — 스케줄 크론이 남아있지만 cron-job.org가 전담하므로 중복 실행 주의
-- ⚠️ GitHub Actions도 여전히 실행됨 → 추후 yml에서 schedule 제거 필요
+## GitHub Actions (비활성 상태 ✅)
+- `cooldown.yml` — `schedule:` 제거 완료 (2026-06-17), `workflow_dispatch`(수동)만 남음
+- cron-job.org가 단독으로 9회 실행 중 → 중복 없음
 
 ## 주요 파일
 - `.github/workflows/cooldown.yml` — 구 스케줄러 (schedule 제거 예정)
