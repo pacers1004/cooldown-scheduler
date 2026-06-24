@@ -6,15 +6,25 @@
 - **GitHub**: `pacers1004/cooldown-scheduler`
 - **로컬**: `~/cooldown-scheduler/`
 
-## 구조
+## ⚠️ 실제 구조 (2026-06-24 감사로 정정)
+**이 레포는 사실상 죽음.** cron-job.org 7개 잡은 전부 **Vercel `/api/cooldown`** 를 침 (Bubble 직접 아님). 이 레포의 `examples.json`(139개)도 라이브에서 안 읽힘 — 라이브는 `weather-app/api/examples.json`(148개)만 사용.
+
 ```
-cron-job.org (타이밍 담당)
-  → POST https://pacers.kr/api/1.1/wf/create_cooldown_post
-  
-Bubble 워크플로우 (콘텐츠 담당)
-  → Step 1: Claude API로 게시글 생성 (claude-sonnet-4-6)
-  → Step 2: Cooldown_post DB 저장
+[실제 라이브 흐름]
+cron-job.org (7개 잡, 타이밍)
+  → POST https://weather-app-pied-theta.vercel.app/api/cooldown   ← Vercel
+  → api/cooldown.js: examples.json(148) + Claude API로 글 생성
+  → Bubble create_cooldown_post_v2 DB 저장
 ```
+> 상세는 `weather-app/CLAUDE.md` Feature 02-B 참고. 이 레포 코드/examples.json은 미사용(아카이브 검토).
+
+<details><summary>구버전(틀린) 흐름 — 기록용</summary>
+
+```
+cron-job.org → POST https://pacers.kr/api/1.1/wf/create_cooldown_post → Bubble가 Claude 호출
+```
+실제로 이렇게 동작하지 않음.
+</details>
 
 ## 실행 시간 (KST) — 7회/일 (2026-06-22 변경)
 06:00 / 08:00 / 10:00 / 12:00 / 15:00 / 18:00 / 21:00
